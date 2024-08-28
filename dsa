@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doors Countdown</title>
+    <style>
+        body {
+            background-color: #2c2c2c;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #header {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXUAAABkCAYAAACf4swgAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAB3RJTUUH5QgSCAYKu3nkQAAAeUlEQVR42u3SQQ0AMAzAsP9/92XI24gLShBn/fLZmAcAAAAAAAAAAAAAAADwDLkYAAAAAAAAAAAAAAAAAAAAYJQhfg8AAAAAAAAAAAAAAACAIJiQAAAAAAAAAAAAAAADACLiXQwAAAAAAAAAAAADwAJSbSgAAAAAAAAAAAAAAABQCTJVCAAAAAAAAAAAAAACwAkJUCgAAAAAAAAAAAADALIpUQAAAAAAAAAAAAAAsgIqKlEAAAAAAAAAAAAAALICQiTAAAAAAAAAAAAAAAAAAAA+QBAJAAAAAAAAAAAAAAAAAAdQJAAkAAAAAAAAAAAAAAAAdQFEEQAAAAAAAAAAAAAAAFSBUwJAJAAAAAAAAAAAAAAAAAAALICXQYAAAAAAAAAAAAAAABQCTJUKAAAAAAAAAAAAAAAAALICUotRAAAAAAAAAAAAAAAAsgJSJlEAAAAAAAAAAAAAALICai1FgAAAAAAAAAAAAAAAFwCUovAAAAAAAAAAAAAAAAALICai1FgAAAAAAAAAAAAAAAsgIqLUWAAAAAAAAAAAAAAAAALICQiRAAAAAAAAAAAAAAAAAALgJSi0RAAAAAAAAAAAAAAAAvgJCi0ZgAAAAAAAAAAAAAAAWgFMiVQAAAAAAAAAAAAAAACyAkiJFAAAAAAAAAAAAAAAAsgKSi1RAAAAAAAAAAAAAAAAsgIqLUSAAAAAAAAAAAAAAAAALgJCi1GAAAAAAAAAAAAAAAAABaAUoNXAJeWV3C5gWo9+YX6PNv1TX5ReSkc9d5H7LRO+RXkpfKv6KAWAAAAAAAAAAAAAAAAAAA2gBM1E0AAAAAAAAAAAAAAAAAAG8ZA5/BcTtvFAAAAAElFTkSuQmCC');
+            background-size: cover;
+            padding: 100px;
+        }
+
+        h1 {
+            font-size: 4em;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        #countdown {
+            font-size: 3em;
+            margin-top: 20px;
+        }
+
+        #footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="header">
+        <h1>DOORS</h1>
+        <h2>Countdown</h2>
+        <div id="countdown"></div>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="https://example.com/falling_down.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div id="footer">
+        <p>Music: "Falling Down" by Lil Peep and XXXTentacion</p>
+    </div>
+
+    <script>
+        // Countdown Timer
+        var countDownDate = new Date().getTime() + (2 * 24 * 60 * 60 * 1000);
+
+        var countdownfunction = setInterval(function () {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " +
+                minutes + "m " + seconds + "s ";
+
+            if (distance < 0) {
+                clearInterval(countdownfunction);
+                document.getElementById("countdown").innerHTML = "EXPIRED";
+            }
+        }, 1000);
+
+        // Play background music
+        window.onload = function () {
+            var audio = document.getElementById("background-music");
+            audio.play();
+        }
+    </script>
+</body>
+</html>
+)end(
